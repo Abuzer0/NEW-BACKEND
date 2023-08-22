@@ -1301,11 +1301,19 @@ app.listen(PORT,()=>{
 
 DB_PASSWORD =process.env.DB_PASSWORD
 DB_CONNECTION = process.env.DB_CONNECTION
-try {
-    mongoose.connect(DB_CONNECTION.replace('<password>','DB_PASSWORD'))
-.then(()=>{
-    console.log('Mongo DB connected');
-})
-} catch (error) {
-    console.log(error);
-}
+    mongoose.connect(DB_CONNECTION.replace('<password>',DB_PASSWORD),{ 
+  
+        
+      
+       
+      useNewUrlParser: true,
+        useUnifiedTopology: true,
+      })
+      .then(() => {
+        
+       
+      console.log('Mongo DB connected');
+      })
+      .catch((error) => {
+        console.error('Mongo DB connection error:', error);
+      });
