@@ -10,7 +10,7 @@ dotenv.config();
 app.use(bodyParser.json())
 
 
-
+console.log("test");
 
 
 
@@ -1301,7 +1301,11 @@ app.listen(PORT,()=>{
 
 DB_PASSWORD =process.env.DB_PASSWORD
 DB_CONNECTION = process.env.DB_CONNECTION
-mongoose.connect(DB_CONNECTION.replace('<password>','DB_PASSWORD'))
+try {
+    mongoose.connect(DB_CONNECTION.replace('<password>','DB_PASSWORD'))
 .then(()=>{
     console.log('Mongo DB connected');
 })
+} catch (error) {
+    console.log(error);
+}
